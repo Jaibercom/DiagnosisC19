@@ -25,7 +25,7 @@ import java.io.IOException
  *
  * @author jaiber.yepes
  */
-class MainViewModel(application: Application) : AndroidViewModel(application) {
+class SimulationViewModel(application: Application) : AndroidViewModel(application) {
 
     private var context: Context = application
     private lateinit var module: Module
@@ -88,8 +88,8 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         return uri.lastPathSegment.toString()
     }
 
-    private suspend fun runModelExec(bitmap: Bitmap): String? {
-        return withContext(Dispatchers.IO) {
+    private suspend fun runModelExec(bitmap: Bitmap): String {
+        return withContext(Dispatchers.Default) {
             val result = executeModel(bitmap)
             result
         }

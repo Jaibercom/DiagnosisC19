@@ -1,17 +1,27 @@
 <resources>
-    <string name="app_name">vIvA Med</string>
+    <string name="app_name">vIvA Med light</string>
     <string name="action_settings">Settings</string>
     <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
-
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="pick_photo">Pick Photo</string>
 
     <string name="title_activity_splash">SplashActivity</string>
-     <string name="result_message">IA apoyo a decisiones médicas Rx \n %s</string>
+    <string name="result_message">IA apoyo a decisiones médicas Rx \n %s</string>
     <string name="title_message">Sistema de apoyo a decisiones médicas para detección de Covid-19</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_home">vIvA-Med light</string>
+    <string name="title_protocols">Protocolos</string>
+    <string name="title_contact">Contáctenos</string>
+
+    <string name="home_message"><![CDATA[<body style="text-align:justify;">Hola, somos <b>vIvA-Med light</b>, una aplicación que permite detectar pacientes con posible COVID-19 por medio de Inteligencia Artificial.</body>]]></string>
+    <string name="protocols_message"><![CDATA[<body style="text-align:justify;"><b>vIvA- Med Light</b> es un aplicativo que cuenta con un sistema de <b>Inteligencia Artificial</b> validado clínica y técnicamente.</body>]]></string>
+    <string name="contact_message"><![CDATA[<p style="text-align:justify;">Para conocer más acerca de <b>vIvA- Med Light</b>, escríbenos y cuéntanos como fue la experiencia y uso del aplicativo.</p>]]></string>
+    <string name="user_manual_message">Para ver el manual de usuario, \nhaga click aquí</string>
+    <string name="protocols_manual_message">Para ver el protocolo clínico, haga clic aquí</string>
+
+    <string name="prompt_name">Nombre</string>
+    <string name="prompt_message">Mensaje</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_phone_number">Teléfono</string>
 </resources>

@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 
 /**
- * ViewModel provider factory to instantiate [MainViewModel].
+ * ViewModel provider factory to instantiate [SimulationViewModel].
  * Required given MainViewModel has a non-empty constructor.
  *
  * @author jaiber.yepes
@@ -13,8 +13,8 @@ import androidx.lifecycle.ViewModelProvider
 class MainViewModelFactory(private val application: Application) : ViewModelProvider.Factory {
 
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(MainViewModel::class.java)) {
-            return MainViewModel(application) as T
+        if (modelClass.isAssignableFrom(SimulationViewModel::class.java)) {
+            return SimulationViewModel(application) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }
