@@ -9,17 +9,37 @@
         android:id="@+id/navigation_home"
         android:name="co.covid19.diagnosis.ui.home.HomeFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_navigation_home_to_navigation_showPDFFragment"
+            app:destination="@id/navigation_showPDFFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_protocols"
         android:name="co.covid19.diagnosis.ui.protocols.ProtocolsFragment"
         android:label="@string/title_protocols"
-        tools:layout="@layout/fragment_protocols" />
+        tools:layout="@layout/fragment_protocols">
+        <action
+            android:id="@+id/action_navigation_protocols_to_navigation_showPDFFragment"
+            app:destination="@id/navigation_showPDFFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_contact"
         android:name="co.covid19.diagnosis.ui.contact.ContactFragment"
         android:label="@string/title_contact"
         tools:layout="@layout/fragment_contact" />
+
+    <fragment
+        android:id="@+id/navigation_showPDFFragment"
+        android:name="co.covid19.diagnosis.ui.showpdf.ShowPDFFragment"
+        android:label="Manual Usuario"
+        tools:layout="@layout/fragment_showpdf">
+        <argument
+            android:name="type"
+            android:defaultValue="USER_MANUAL"
+            app:argType=".util.TypePDF" />
+    </fragment>
+
 </navigation>

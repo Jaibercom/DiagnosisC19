@@ -17,8 +17,9 @@
     <string name="home_message"><![CDATA[<body style="text-align:justify;">Hola, somos <b>vIvA-Med light</b>, una aplicación que permite detectar pacientes con posible COVID-19 por medio de Inteligencia Artificial.</body>]]></string>
     <string name="protocols_message"><![CDATA[<body style="text-align:justify;"><b>vIvA- Med Light</b> es un aplicativo que cuenta con un sistema de <b>Inteligencia Artificial</b> validado clínica y técnicamente.</body>]]></string>
     <string name="contact_message"><![CDATA[<p style="text-align:justify;">Para conocer más acerca de <b>vIvA- Med Light</b>, escríbenos y cuéntanos como fue la experiencia y uso del aplicativo.</p>]]></string>
-    <string name="user_manual_message">Para ver el manual de usuario, \nhaga click aquí</string>
-    <string name="protocols_manual_message">Para ver el protocolo clínico, haga clic aquí</string>
+    <string name="user_manual_message">Para ver el manual de usuario, \nhaga click <b><font color="#06A9A8"> aquí</font></b></string>
+    <string name="protocols_manual_message">Para ver el protocolo clínico, \nhaga clic <b><font color="#06A9A8"> aquí</font></b></string>
+    <string name="show_pdf_message">Show PDF</string>
 
     <string name="prompt_name">Nombre</string>
     <string name="prompt_message">Mensaje</string>

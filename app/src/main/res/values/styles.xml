@@ -27,7 +27,7 @@
         <item name="android:windowBackground">@drawable/splash</item>
     </style>
 
-    <style name="AppTheme.FloatingAccentButtonOverlay" >
-        <item name="colorAccent">@color/colorFloatingActionBarAccent</item>
+    <style name="customfontstyle" parent="@android:style/TextAppearance.Small">
+        <item name="android:fontFamily">@font/calibri_400</item>
     </style>
 </resources>

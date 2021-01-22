@@ -8,6 +8,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import co.covid19.diagnosis.R
 
+/**
+ *
+ * @author jaiber.yepes
+ */
 class HomeViewModel (application: Application) : AndroidViewModel(application) {
 
     private val context = getApplication<Application>()

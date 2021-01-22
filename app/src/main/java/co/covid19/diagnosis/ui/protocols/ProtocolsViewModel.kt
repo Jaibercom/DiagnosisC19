@@ -10,6 +10,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import co.covid19.diagnosis.R
 
+/**
+ *
+ * @author jaiber.yepes
+ */
 class ProtocolsViewModel(application: Application) : AndroidViewModel(application) {
 
     private val context = getApplication<Application>()
