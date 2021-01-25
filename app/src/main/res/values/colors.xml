@@ -7,5 +7,7 @@
     <color name="colorFloatingActionBarAccent">#000000</color>
 
     <color name="white">#FFFFFF</color>
-    <color name="toolbar_bg">#000000</color>
+    <color name="toolbar_bg">#06A9A8</color>
+    <color name="camera_icon_color">#06A9A8</color>
+
 </resources>
