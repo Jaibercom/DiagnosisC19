@@ -1,7 +1,5 @@
 package co.covid19.diagnosis.util
 
-import android.content.Context
-
 /**
  * Constants
  *

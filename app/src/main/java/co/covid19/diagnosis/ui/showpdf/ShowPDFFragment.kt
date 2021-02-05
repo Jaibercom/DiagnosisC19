@@ -28,7 +28,7 @@ import java.io.InputStream
  */
 class ShowPDFFragment : Fragment() {
 
-    val args: ShowPDFFragmentArgs by navArgs()
+    private val args: ShowPDFFragmentArgs by navArgs()
 
     private lateinit var imageViewPdf: ImageView
     private lateinit var prePageButton: FloatingActionButton
@@ -51,14 +51,13 @@ class ShowPDFFragment : Fragment() {
         nextPageButton = root.findViewById(R.id.button_next_doc)
 
         val type: TypePDF = args.type
-        Log.d("TAG", "Type PDF: $type")
+        Log.d(TAG, "Type PDF: $type")
 
         prePageButton.setOnClickListener { onPreviousDocClick() }
         nextPageButton.setOnClickListener { onNextDocClick() }
 
         return root
     }
-
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     override fun onStart() {
@@ -93,11 +92,12 @@ class ShowPDFFragment : Fragment() {
     @Throws(IOException::class)
     private fun openRenderer(context: Context) {
         // In this sample, we read a PDF from the assets directory.
-        val file = File(context.cacheDir, FILENAME)
+        val fileName = getFileName()
+        val file = File(context.filesDir, fileName)
         if (!file.exists()) {
             // Since PdfRenderer cannot handle the compressed asset file directly, we copy it into
             // the cache directory.
-            val asset: InputStream = context.assets.open(FILENAME)
+            val asset: InputStream = context.assets.open(fileName)
             val output = FileOutputStream(file)
             val buffer = ByteArray(1024)
             var size: Int
@@ -111,6 +111,13 @@ class ShowPDFFragment : Fragment() {
         // This is the PdfRenderer we use to render the PDF.
         parcelFileDescriptor?.let {
             pdfRenderer = PdfRenderer(it)
+        }
+    }
+
+    private fun getFileName(): String {
+        return when (args.type) {
+            TypePDF.USER_MANUAL -> FILENAME_USER_MANUAL
+            else -> FILENAME
         }
     }
 
@@ -163,5 +170,7 @@ class ShowPDFFragment : Fragment() {
 
     companion object {
         private const val FILENAME = "TeleorientacionRecomendaciones.pdf"
+        private const val FILENAME_USER_MANUAL = "manual_usuario.pdf"
+        private const val TAG = "ShowPDFFragment"
     }
 }
