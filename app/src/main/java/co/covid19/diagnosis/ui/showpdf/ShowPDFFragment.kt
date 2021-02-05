@@ -12,9 +12,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import co.covid19.diagnosis.R
+import co.covid19.diagnosis.ui.MainActivity
 import co.covid19.diagnosis.util.TypePDF
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import java.io.File
@@ -59,6 +61,12 @@ class ShowPDFFragment : Fragment() {
         return root
     }
 
+    override fun onResume() {
+        super.onResume()
+        (activity as AppCompatActivity).supportActionBar?.hide()
+        (requireActivity() as MainActivity).hideBottomNav()
+    }
+
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     override fun onStart() {
         super.onStart()
@@ -77,6 +85,8 @@ class ShowPDFFragment : Fragment() {
         } catch (e: IOException) {
             e.printStackTrace()
         }
+        (activity as AppCompatActivity).supportActionBar?.show()
+        (requireActivity() as MainActivity).showBottomNav()
         super.onStop()
     }
 
