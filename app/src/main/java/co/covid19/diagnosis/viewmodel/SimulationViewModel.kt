@@ -106,7 +106,8 @@ class SimulationViewModel(application: Application) : AndroidViewModel(applicati
         )
 
         // running the model
-        val outputTensor = module.forward(IValue.from(inputTensor)).toTensor()
+//        val outputTensor = module.forward(IValue.from(inputTensor)).toTensor()
+        val outputTensor = module.forward(IValue.from(inputTensor)).toTuple()[0].toTensor()
 
         // getting tensor content as java array of floats
         val scores = outputTensor.dataAsFloatArray
