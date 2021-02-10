@@ -5,6 +5,7 @@
     <string name="next">Next</string>
     <string name="previous">Previous</string>
     <string name="pick_photo">Pick Photo</string>
+    <string name="continue_message">Continuar</string>
 
     <string name="title_activity_splash">SplashActivity</string>
     <string name="result_message">IA apoyo a decisiones médicas Rx \n %s</string>
@@ -19,10 +20,17 @@
     <string name="contact_message"><![CDATA[<p style="text-align:justify;">Para conocer más acerca de <b>vIvA- Med Light</b>, escríbenos y cuéntanos como fue la experiencia y uso del aplicativo.</p>]]></string>
     <string name="user_manual_message">Para ver el manual de usuario, \nhaga click <b><font color="#06A9A8"> aquí</font></b></string>
     <string name="protocols_manual_message">Para ver el protocolo clínico, \nhaga clic <b><font color="#06A9A8"> aquí</font></b></string>
+    <string name="privacy_message"><![CDATA[<body style="text-align:justify;">Este dispositivo es un sistema de priorización de uso exclusivo para
+            apoyar y soportar las decisiones clínicas y <b>NO</b> corresponde a un sistema diagnóstico que sustituye el criterio clínico, ni la interpretación
+            del radiólogo según lo establecido en la ley. </body>]]></string>
     <string name="show_pdf_message">Show PDF</string>
 
     <string name="prompt_name">Nombre</string>
     <string name="prompt_message">Mensaje</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_phone_number">Teléfono</string>
+    <string name="privacy_policy_message">He leído y acepto la Política de Privacidad</string>
+    <string name="privacy_policy_underline_message">Política de Privacidad</string>
+    <string name="terms_and_conditions_message">He leído y acepto los Términos y Condiciones Legales</string>
+    <string name="terms_and_conditions_underline_message">Términos y Condiciones</string>
 </resources>

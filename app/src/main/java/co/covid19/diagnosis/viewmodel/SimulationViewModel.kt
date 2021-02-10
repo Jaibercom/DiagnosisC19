@@ -6,10 +6,7 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
 import android.util.Log
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.*
 import co.covid19.diagnosis.util.Constants.IMAGENET_CLASSES
 import co.covid19.diagnosis.util.Constants.MODEL_NAME_1
 import kotlinx.coroutines.*
@@ -37,6 +34,9 @@ class SimulationViewModel(application: Application) : AndroidViewModel(applicati
 
     private var result = MutableLiveData<String>()
     var resultLiveData: LiveData<String> = result
+
+    private var resultPercent = MutableLiveData<Float>()
+    var resultPercentLiveData: LiveData<Float> = resultPercent
 
     private var bitmap = MutableLiveData<Bitmap>()
     private var imageName = MutableLiveData<String>()
@@ -74,25 +74,20 @@ class SimulationViewModel(application: Application) : AndroidViewModel(applicati
     fun runModel() {
         result.value = "Procesando .."
         isProcessing.value = true
-        uiScope.launch {
+
+        viewModelScope.launch {
             val image = createBitmap()
-            result.value = runModelExec(image)
+            result.value = executeModel(image)
             isProcessing.value = false
             bitmap.value = image
             imageName.value = getImageName()
         }
+
     }
 
     private fun getImageName(): String {
         val uri = Uri.parse(imagePath);
         return uri.lastPathSegment.toString()
-    }
-
-    private suspend fun runModelExec(bitmap: Bitmap): String {
-        return withContext(Dispatchers.Default) {
-            val result = executeModel(bitmap)
-            result
-        }
     }
 
     private fun executeModel(bitmap: Bitmap): String {
@@ -120,6 +115,8 @@ class SimulationViewModel(application: Application) : AndroidViewModel(applicati
                 maxScoreIdx = i
             }
         }
+
+        resultPercent.value = maxScore
 
         return IMAGENET_CLASSES[maxScoreIdx]
     }

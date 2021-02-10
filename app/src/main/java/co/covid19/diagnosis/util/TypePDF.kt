@@ -6,5 +6,7 @@ package co.covid19.diagnosis.util
  */
 enum class TypePDF {
     USER_MANUAL,
-    PROTOCOL;
+    PROTOCOL,
+    PRIVACY,
+    TERMS;
 }

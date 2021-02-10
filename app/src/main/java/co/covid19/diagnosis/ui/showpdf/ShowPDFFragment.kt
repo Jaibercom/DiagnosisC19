@@ -46,7 +46,6 @@ class ShowPDFFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-//        dashboardViewModel = ViewModelProvider(this).get(ProtocolsViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_showpdf, container, false)
         imageViewPdf = root.findViewById(R.id.pdf_image)
         prePageButton = root.findViewById(R.id.button_pre_doc)
@@ -64,7 +63,9 @@ class ShowPDFFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         (activity as AppCompatActivity).supportActionBar?.hide()
-        (requireActivity() as MainActivity).hideBottomNav()
+        if (requireActivity() is MainActivity) {
+            (requireActivity() as MainActivity).hideBottomNav()
+        }
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -86,7 +87,10 @@ class ShowPDFFragment : Fragment() {
             e.printStackTrace()
         }
         (activity as AppCompatActivity).supportActionBar?.show()
-        (requireActivity() as MainActivity).showBottomNav()
+
+        if (requireActivity() is MainActivity) {
+            (requireActivity() as MainActivity).showBottomNav()
+        }
         super.onStop()
     }
 
@@ -127,6 +131,7 @@ class ShowPDFFragment : Fragment() {
     private fun getFileName(): String {
         return when (args.type) {
             TypePDF.USER_MANUAL -> FILENAME_USER_MANUAL
+            TypePDF.PRIVACY -> FILENAME_PRIVACY
             else -> FILENAME
         }
     }
@@ -181,6 +186,7 @@ class ShowPDFFragment : Fragment() {
     companion object {
         private const val FILENAME = "TeleorientacionRecomendaciones.pdf"
         private const val FILENAME_USER_MANUAL = "manual_usuario.pdf"
+        private const val FILENAME_PRIVACY = "politica_privacidad.pdf"
         private const val TAG = "ShowPDFFragment"
     }
 }
