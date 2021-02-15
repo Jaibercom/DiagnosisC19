@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="LibTheme" parent="@style/Theme.MaterialComponents.Light.NoActionBar.Bridge">
+    <style name="LibTheme" parent="@style/Theme.MaterialComponents.Light.NoActionBar.Bridge"></style>
+
+    <style name="AlertDialogTheme" parent="ThemeOverlay.MaterialComponents.MaterialAlertDialog">
+
+        <item name="materialAlertDialogTitleTextStyle">@style/TitleTextStyle</item>
+        <item name="materialAlertDialogBodyTextStyle">@style/BodyTextStyle</item>
     </style>
+
+    <style name="TitleTextStyle" parent="MaterialAlertDialog.MaterialComponents.Title.Text">
+        <item name="android:textColor">@color/counter_bg</item>
+        <item name="android:textSize">24sp</item>
+    </style>
+
+    <style name="BodyTextStyle" parent="MaterialAlertDialog.MaterialComponents.Title.Panel">
+        <item name="android:textSize">15sp</item>
+    </style>
+
 </resources>

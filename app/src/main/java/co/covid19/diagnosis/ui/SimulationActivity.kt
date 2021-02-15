@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import co.covid19.diagnosis.R
 import co.covid19.diagnosis.viewmodel.SimulationViewModel
 import co.covid19.diagnosis.viewmodel.MainViewModelFactory
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.opensooq.supernova.gligar.GligarPicker
 import kotlinx.android.synthetic.main.activity_simulation.*
 
@@ -34,7 +35,19 @@ class SimulationActivity : AppCompatActivity() {
         pickPhotoButton.setOnClickListener {
             runGligarPicker()
         }
-        runGligarPicker()
+        showAlertDialog()
+    }
+
+
+    private fun showAlertDialog() {
+        MaterialAlertDialogBuilder(this, R.style.AlertDialogTheme)
+            .setTitle(resources.getString(R.string.alert_date_title))
+            .setMessage(resources.getString(R.string.alert_confirm_supporting_text))
+            .setPositiveButton(resources.getString(R.string.ok)) { _, _ ->
+                // Respond to positive button press
+                runGligarPicker()
+            }
+            .show()
     }
 
     private fun runGligarPicker() {
@@ -62,6 +75,10 @@ class SimulationActivity : AppCompatActivity() {
 
         viewModel.resultLiveData.observe(this, {
             resultView.text = it
+        })
+
+        viewModel.resultPercentLiveData.observe(this, {
+            resultPercentView.text = it
         })
 
         viewModel.isProcessingLiveData.observe(this, {

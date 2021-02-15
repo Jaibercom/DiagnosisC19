@@ -31,11 +31,13 @@ class SimulationViewModel(application: Application) : AndroidViewModel(applicati
     private lateinit var module: Module
     private lateinit var imagePath: String
 
-    private var result = MutableLiveData<String>()
+    private var result = MutableLiveData("")
     var resultLiveData: LiveData<String> = result
 
     private var resultPercent = MutableLiveData<Float>()
-    var resultPercentLiveData: LiveData<Float> = resultPercent
+    var resultPercentLiveData: LiveData<String> = resultPercent.map {
+        "${it.toInt()}%"
+    }
 
     private var bitmap = MutableLiveData<Bitmap>()
     var bitmapLiveData: LiveData<Bitmap> = bitmap
@@ -116,7 +118,7 @@ class SimulationViewModel(application: Application) : AndroidViewModel(applicati
             }
         }
 
-        resultPercent.value = maxScore
+        resultPercent.value = maxScore * 100
 
         return IMAGENET_CLASSES[maxScoreIdx]
     }

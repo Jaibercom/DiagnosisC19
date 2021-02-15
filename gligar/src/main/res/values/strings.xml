@@ -6,4 +6,9 @@
     <string name="capture_new_image">Capture new image</string>
     <string name="over_limit_msg">You have exceeded Images limit</string>
 
+    // Alert
+    <string name="alert_date_title">Imágenes</string>
+    <string name="alert_confirm_supporting_text">SOLO IMAGENES (NO DICOM) DE RADIOGRAFIAS DE TORAX\n\nPara versión completa ir a www.vivamed.com.co \n</string>
+    <string name="ok">ok</string>
+
 </resources>
