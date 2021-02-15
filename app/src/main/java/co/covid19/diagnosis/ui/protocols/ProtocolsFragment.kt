@@ -13,7 +13,6 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import co.covid19.diagnosis.R
-import co.covid19.diagnosis.ui.home.HomeFragmentDirections
 import co.covid19.diagnosis.util.TypePDF
 
 /**
@@ -57,6 +56,5 @@ class ProtocolsFragment : Fragment() {
             TypePDF.PROTOCOL
         )
         nav.navigate(action)
-//        nav.navigate(R.id.action_navigation_protocols_to_navigation_showPDFFragment)
     }
 }

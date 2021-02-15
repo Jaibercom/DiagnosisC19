@@ -132,6 +132,7 @@ class ShowPDFFragment : Fragment() {
         return when (args.type) {
             TypePDF.USER_MANUAL -> FILENAME_USER_MANUAL
             TypePDF.PRIVACY -> FILENAME_PRIVACY
+            TypePDF.PROTOCOL -> FILENAME_PROTOCOL
             else -> FILENAME
         }
     }
@@ -187,6 +188,7 @@ class ShowPDFFragment : Fragment() {
         private const val FILENAME = "TeleorientacionRecomendaciones.pdf"
         private const val FILENAME_USER_MANUAL = "manual_usuario.pdf"
         private const val FILENAME_PRIVACY = "politica_privacidad.pdf"
+        private const val FILENAME_PROTOCOL = "protocolo_investigacion.pdf"
         private const val TAG = "ShowPDFFragment"
     }
 }

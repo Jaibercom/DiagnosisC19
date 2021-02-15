@@ -41,7 +41,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:imeOptions="actionNext"
-            android:inputType="textCapCharacters"
+            android:inputType="textPersonName|textCapWords"
             android:maxLength="20"
             android:selectAllOnFocus="true"
             android:singleLine="true" />
