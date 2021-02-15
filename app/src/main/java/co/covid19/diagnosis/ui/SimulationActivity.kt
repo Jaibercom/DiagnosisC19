@@ -37,7 +37,7 @@ class SimulationActivity : AppCompatActivity() {
         runGligarPicker()
     }
 
-    private fun runGligarPicker(){
+    private fun runGligarPicker() {
         imageView.setImageResource(android.R.color.transparent)
         imageNameView.text = ""
         GligarPicker()
@@ -52,19 +52,19 @@ class SimulationActivity : AppCompatActivity() {
     }
 
     private fun observeLiveData() {
-        viewModel.bitmapLiveData.observe(this, Observer {
+        viewModel.bitmapLiveData.observe(this, {
             imageView.setImageBitmap(it)
         })
 
-        viewModel.imageNameLiveData.observe(this, Observer {
+        viewModel.imageNameLiveData.observe(this, {
             imageNameView.text = it
         })
 
-        viewModel.resultLiveData.observe(this, Observer {
+        viewModel.resultLiveData.observe(this, {
             resultView.text = it
         })
 
-        viewModel.isProcessingLiveData.observe(this, Observer {
+        viewModel.isProcessingLiveData.observe(this, {
             if (it == true) {
                 pickPhotoButton.isEnabled = false
                 progressBar.visibility = View.VISIBLE

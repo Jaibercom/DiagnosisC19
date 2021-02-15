@@ -73,8 +73,7 @@ internal class PickerViewModel(private val savedStateHandle: SavedStateHandle) :
             return
         }
         viewModelScope.launch {
-            val albums = getAlbums()
-            mAlbums.value = albums
+            mAlbums.value = getAlbums()
             loadImages()
         }
     }

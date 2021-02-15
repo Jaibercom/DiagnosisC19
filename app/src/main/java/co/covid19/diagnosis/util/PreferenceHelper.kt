@@ -12,6 +12,8 @@ object PreferenceHelper {
 
     const val PREFERENCE_FILE = "preference-file"
     private const val PRIVACY_KEY = "privacy-key"
+    private const val CURRENT_ALBUM_KEY = "album-key"
+    private const val CURRENT_ITEM_KEY = "item-key"
 
     fun customPreference(context: Context, name: String): SharedPreferences = context.getSharedPreferences(name, Context.MODE_PRIVATE)
 
@@ -26,6 +28,22 @@ object PreferenceHelper {
         set(value) {
             edit {
                 it.putBoolean(PRIVACY_KEY, value)
+            }
+        }
+
+    var SharedPreferences.currentAlbum
+        get() = getInt(CURRENT_ALBUM_KEY, 0)
+        set(value) {
+            edit {
+                it.putInt(CURRENT_ALBUM_KEY, value)
+            }
+        }
+
+    var SharedPreferences.currentItem
+        get() = getInt(CURRENT_ITEM_KEY, 0)
+        set(value) {
+            edit {
+                it.putInt(CURRENT_ITEM_KEY, value)
             }
         }
 

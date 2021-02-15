@@ -9,7 +9,10 @@ import android.util.Log
 import androidx.lifecycle.*
 import co.covid19.diagnosis.util.Constants.IMAGENET_CLASSES
 import co.covid19.diagnosis.util.Constants.MODEL_NAME_1
-import kotlinx.coroutines.*
+import co.covid19.diagnosis.util.PreferenceHelper
+import co.covid19.diagnosis.util.PreferenceHelper.currentAlbum
+import co.covid19.diagnosis.util.PreferenceHelper.currentItem
+import kotlinx.coroutines.launch
 import org.pytorch.IValue
 import org.pytorch.Module
 import org.pytorch.torchvision.TensorImageUtils
@@ -24,13 +27,9 @@ import java.io.IOException
  */
 class SimulationViewModel(application: Application) : AndroidViewModel(application) {
 
-    private var context: Context = application
+    private var context: Context = application.applicationContext
     private lateinit var module: Module
-
     private lateinit var imagePath: String
-
-    private var viewModelJob = Job()
-    private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 
     private var result = MutableLiveData<String>()
     var resultLiveData: LiveData<String> = result
@@ -39,8 +38,9 @@ class SimulationViewModel(application: Application) : AndroidViewModel(applicati
     var resultPercentLiveData: LiveData<Float> = resultPercent
 
     private var bitmap = MutableLiveData<Bitmap>()
-    private var imageName = MutableLiveData<String>()
     var bitmapLiveData: LiveData<Bitmap> = bitmap
+
+    private var imageName = MutableLiveData<String>()
     var imageNameLiveData: LiveData<String> = imageName
 
     private var isProcessing = MutableLiveData<Boolean>()
@@ -49,21 +49,21 @@ class SimulationViewModel(application: Application) : AndroidViewModel(applicati
     var currentSelectedAlbum = 0
     var currentSelectedItem = 0
 
+    private val sharedPreferences = PreferenceHelper.customPreference(
+        context,
+        PreferenceHelper.PREFERENCE_FILE
+    )
+
     init {
-        loadModel(MODEL_NAME_1)
+        loadModel()
+        currentSelectedAlbum = sharedPreferences.currentAlbum
+        currentSelectedItem = sharedPreferences.currentItem
     }
 
-    private fun loadModel(fileName: String) {
-        uiScope.launch {
-            val file = loadFile(fileName)
+    private fun loadModel() {
+        viewModelScope.launch {
+            val file = assetFilePath(context, MODEL_NAME_1)
             module = Module.load(file)
-        }
-    }
-
-    private suspend fun loadFile(fileName: String): String? {
-        return withContext(Dispatchers.IO) {
-            val file = assetFilePath(context, fileName)
-            file
         }
     }
 
@@ -76,7 +76,7 @@ class SimulationViewModel(application: Application) : AndroidViewModel(applicati
         isProcessing.value = true
 
         viewModelScope.launch {
-            val image = createBitmap()
+            val image = BitmapFactory.decodeFile(imagePath)
             result.value = executeModel(image)
             isProcessing.value = false
             bitmap.value = image
@@ -86,7 +86,7 @@ class SimulationViewModel(application: Application) : AndroidViewModel(applicati
     }
 
     private fun getImageName(): String {
-        val uri = Uri.parse(imagePath);
+        val uri = Uri.parse(imagePath)
         return uri.lastPathSegment.toString()
     }
 
@@ -121,14 +121,6 @@ class SimulationViewModel(application: Application) : AndroidViewModel(applicati
         return IMAGENET_CLASSES[maxScoreIdx]
     }
 
-    // creating bitmap from packaged into app android asset 'covid_original.jpg',
-    private suspend fun createBitmap(): Bitmap {
-        return withContext(Dispatchers.IO) {
-            val bitmap = BitmapFactory.decodeFile(imagePath)
-            bitmap
-        }
-    }
-
     /**
      * Copies specified asset to the file in /files app directory and returns this file absolute path.
      *
@@ -159,6 +151,7 @@ class SimulationViewModel(application: Application) : AndroidViewModel(applicati
 
     override fun onCleared() {
         super.onCleared()
-        viewModelJob.cancel()
+        sharedPreferences.currentAlbum = currentSelectedAlbum
+        sharedPreferences.currentItem = currentSelectedItem
     }
 }

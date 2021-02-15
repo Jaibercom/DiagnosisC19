@@ -43,9 +43,11 @@ internal class AlbumsAdapter(var albumItems: List<AlbumItem>, context: Context) 
         } else {
             viewHolder = convertView.tag as ViewHolderView
         }
-        val item = getItem(position)
-        if (item != null) {
-            viewHolder.tvLabel?.text = item.name
+        if(position < albumItems.size) {
+            val item = getItem(position)
+            if (item != null) {
+                viewHolder.tvLabel?.text = item.name
+            }
         }
         return convertView!!
     }
