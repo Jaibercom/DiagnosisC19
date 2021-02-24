@@ -143,8 +143,11 @@ class ShowPDFFragment : Fragment() {
         if (null != currentPage) {
             currentPage?.close()
         }
-        pdfRenderer.close()
-        parcelFileDescriptor?.close()
+
+        parcelFileDescriptor?.let {
+            pdfRenderer.close()
+            it.close()
+        }
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -185,7 +188,7 @@ class ShowPDFFragment : Fragment() {
     }
 
     companion object {
-        private const val FILENAME = "TeleorientacionRecomendaciones.pdf"
+        private const val FILENAME = "filename.pdf"
         private const val FILENAME_USER_MANUAL = "manual_usuario.pdf"
         private const val FILENAME_PRIVACY = "politica_privacidad.pdf"
         private const val FILENAME_PROTOCOL = "protocolo_investigacion.pdf"
